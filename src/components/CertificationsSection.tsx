@@ -1,22 +1,37 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Award, ExternalLink } from "lucide-react";
-
-const certs = [
-  { title: "Build Generative AI Apps and Solutions with No-Code Tool", issuer: "Infosys", color: "primary" as const },
-  { title: "Cloud Computing", issuer: "NPTEL", color: "accent" as const },
-  { title: "Amazon Web Services", issuer: "Infosys", color: "primary" as const },
-];
+import { useRef, useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const CertificationsSection = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true });
+
+  const [certs, setCerts] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchCertifications();
+  }, []);
+
+  const fetchCertifications = async () => {
+    const { data, error } = await supabase
+      .from("certifications")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching certifications:", error);
+    } else {
+      setCerts(data || []);
+    }
+  };
 
   return (
     <section id="certifications" className="section-padding bg-background" ref={ref}>
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-5xl">
+
+        {/* HEADER */}
         <motion.div
-          initial={{ y: 40, opacity: 0 }}
+          initial={{ y: 20, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
         >
@@ -29,30 +44,53 @@ const CertificationsSection = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        {/* CARDS */}
+        <div className="grid md:grid-cols-2 gap-6 mt-10">
           {certs.map((c, i) => (
-            <motion.div
-              key={c.title}
-              initial={{ x: -40, opacity: 0 }}
-              animate={inView ? { x: 0, opacity: 1 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="glass-card-hover p-6 flex items-center gap-5"
-            >
-              <div className={`p-3 rounded-xl shrink-0 ${c.color === 'accent' ? 'bg-accent/10' : 'bg-primary/10'}`}>
-                <Award className={c.color === 'accent' ? 'text-accent' : 'text-primary'} size={22} />
+             <motion.a
+                key={c.id}
+                href={c.certificate_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ y: 40, opacity: 0 }}
+                animate={inView ? { y: 0, opacity: 1 } : {}}
+                transition={{ delay: i * 0.15 }}
+                className="rounded-2xl overflow-hidden bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition-all duration-300 group"
+                        >
+
+              {/* IMAGE */}
+              <div className="relative w-full h-44 overflow-hidden">
+
+                <img
+                  src={c.image_url}
+                  alt={c.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    objectPosition: "top " // 🔥 shows header/logo part
+                  }}
+                />
+
+                {/* LIGHT FADE (matches your UI) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
               </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-foreground text-[15px]">{c.title}</h3>
-                <p className="text-sm text-muted-foreground font-mono mt-0.5">{c.issuer}</p>
+
+              {/* TEXT (NON-TRANSPARENT CLEAN UI) */}
+              <div className="p-4 bg-white/80 backdrop-blur-sm">
+
+                <h3 className="text-[15px] font-semibold text-gray-800 tracking-tight">
+                  {c.title}
+                </h3>
+
+                <p className="text-[13px] text-gray-500 mt-1">
+                  {c.issuer}
+                </p>
+
               </div>
-              <div className="shrink-0">
-                <span className={`tag-pill ${c.color === 'accent' ? 'border-accent/20 bg-accent/5 text-accent' : ''}`}>
-                  Verified
-                </span>
-              </div>
-            </motion.div>
+
+            </motion.a>
           ))}
         </div>
+
       </div>
     </section>
   );

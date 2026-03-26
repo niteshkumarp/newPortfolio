@@ -19,7 +19,7 @@ const AboutSection = () => {
             <span className="text-gradient">About Me</span>
           </h2>
           <p className="section-subtitle">
-            A driven CS student building expertise in ML, backend systems, and algorithmic problem-solving.
+            A passionate engineer building expertise in ML, backend systems, and algorithmic problem-solving.
           </p>
         </motion.div>
 
@@ -37,7 +37,7 @@ const AboutSection = () => {
               <h3 className="text-xl font-display font-bold text-foreground">Who I Am</h3>
             </div>
             <p className="text-muted-foreground leading-relaxed text-[15px]">
-              Computer Science Engineering student with a strong interest in Machine Learning, Backend Development, and scalable systems. Skilled in Python, Java, and C++ with experience building RESTful APIs using Node.js and Express.js. Passionate about solving complex problems using Data Structures, Algorithms, and data-driven approaches.
+              Computer Science Engineer specializing in Machine Learning, Backend Development, and scalable system architecture. Proficient in Python, Java, and C++ with hands-on experience designing and deploying RESTful APIs using Node.js and Express.js. Driven by a passion for solving complex, real-world problems through Data Structures, Algorithms, and data-driven engineering.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["Python", "Java", "C++", "Node.js", "ML"].map(t => (
@@ -58,7 +58,7 @@ const AboutSection = () => {
               </div>
               <h3 className="text-xl font-display font-bold text-foreground">Education</h3>
             </div>
-            <div className="space-y-6">
+            <div className="max-h-[220px] overflow-y-auto pr-2 space-y-6 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
               <div className="relative pl-6 border-l-2 border-primary/30">
                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
                 <h4 className="font-semibold text-foreground text-[15px]">B.Tech Computer Science & Engineering</h4>
@@ -84,6 +84,34 @@ const AboutSection = () => {
                   <span className="text-xs font-mono px-3 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent">CGPA: 8.43</span>
                   <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Calendar size={11} /> 2022 – 2024
+                  </span>
+                </div>
+              </div>
+              <div className="relative pl-6 border-l-2 border-primary/30">
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
+                <h4 className="font-semibold text-foreground text-[15px]">Intermediate (12th)</h4>
+                <p className="text-sm text-muted-foreground flex items-center gap-1.5 mt-1">
+                  <MapPin size={12} />
+                  G.D.S Academy, Bihar
+                </p>
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="tag-pill">57%</span>
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Calendar size={11} /> 2020 – 2022
+                  </span>
+                </div>
+              </div>
+              <div className="relative pl-6 border-l-2 border-accent/30">
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent/20 border-2 border-accent" />
+                <h4 className="font-semibold text-foreground text-[15px]">Matriculation (10th)</h4>
+                <p className="text-sm text-muted-foreground flex items-center gap-1.5 mt-1">
+                  <MapPin size={12} />
+                  G.D.S Academy, Bihar
+                </p>
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="text-xs font-mono px-3 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent">76%</span>
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Calendar size={11} /> 2019 – 2020
                   </span>
                 </div>
               </div>
