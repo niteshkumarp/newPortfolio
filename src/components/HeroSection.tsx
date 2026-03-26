@@ -161,7 +161,7 @@ const HeroSection = () => {
                 <ArrowDown size={14} className="inline ml-2 group-hover:translate-y-0.5 transition-transform" />
               </a>
               <a
-                href="https://drive.google.com/file/d/1n88gSOlqYqMKVrvuPg5c877ZjEVttokw/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1mhIycJCPO8y12EJbE97rmL-Q0EXE_Gvd/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-7 py-3.5 rounded-xl border border-primary/30 text-primary font-medium hover:bg-primary/10 transition-all duration-300 backdrop-blur-sm text-sm"
